@@ -40,12 +40,12 @@ class Parser {
         return;
       }
 
-      final model = tests.putIfAbsent(id, () => TestModel());
-      model.id = id;
-      model.name = name;
-      if (line['test']['metadata']['skip']) {
-        model.state = State.Skipped;
-      }
+      tests.putIfAbsent(id, () => TestModel(
+        id: id,
+        name: name,
+        state: line['test']['metadata']['skip'] ? State.Skipped : null,
+      ));
+
     }
   }
 
@@ -69,7 +69,7 @@ class Parser {
       String message = line['message'];
 
       final model = tests[id];
-      if (model != null && message != null) {
+      if (model != null) {
         model.message = '\t$message\n';
       }
     }

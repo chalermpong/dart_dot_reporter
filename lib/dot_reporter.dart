@@ -20,14 +20,14 @@ class DotReporter {
   final Stdout out;
 
   DotReporter({
-    this.parser,
+    required this.parser,
     this.showId = false,
     this.showSuccess = false,
     this.hideSkipped = false,
     this.failSkipped = false,
     this.showMessage = false,
     this.noColor = false,
-    this.out,
+    required this.out,
   });
 
   void printReport() {
@@ -142,10 +142,10 @@ class DotReporter {
 
     if (model.state == State.Failure && showMessage) {
       if (model.error != null) {
-        base += '\n' + model.error;
+        base += '\n' + model.error!;
       }
       if (model.message != null) {
-        base += '\n' + model.message;
+        base += '\n' + model.message!;
       }
     }
     if (showId) {

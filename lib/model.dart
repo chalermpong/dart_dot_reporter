@@ -5,14 +5,20 @@ enum State {
 }
 
 class TestModel {
-  int id;
-  String name;
-  String error;
-  String message;
-  State state;
+  final int id;
+  final String name;
+  String? error;
+  String? message;
+  State? state;
+
+  TestModel({
+    required this.id,
+    required this.name,
+    this.state,
+  });
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (other is TestModel) {
       return id == other.id &&
           name == other.name &&
