@@ -1,6 +1,9 @@
 import 'dart:io';
 
-import 'package:dart_dot_reporter/dart_dot_reporter.dart' as dart_dot_reporter;
+import 'package:dart_dot_reporter/src/dart_dot_reporter.dart';
+
+
+
 
 void main(List<String> arguments) {
   final usage = 'Usage: dart_dot_reporter <machine.log> [flags]';
@@ -56,7 +59,7 @@ void main(List<String> arguments) {
     return;
   }
 
-  dart_dot_reporter.run(
+  run(
     path: path,
     HIDE_SKIPPED: arguments.contains('--hide-skip'),
     FAIL_SKIPPED: arguments.contains('--fail-skipped'),

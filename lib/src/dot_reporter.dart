@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'model.dart';
-import 'parser.dart';
+import 'package:dart_dot_reporter/src/model.dart';
+import 'package:dart_dot_reporter/src/parser.dart';
+
 
 class DotReporter {
   final Parser parser;
@@ -20,14 +21,14 @@ class DotReporter {
   final Stdout out;
 
   DotReporter({
-    this.parser,
+    required this.parser,
     this.showId = false,
     this.showSuccess = false,
     this.hideSkipped = false,
     this.failSkipped = false,
     this.showMessage = false,
     this.noColor = false,
-    this.out,
+    required this.out,
   });
 
   void printReport() {
@@ -74,17 +75,17 @@ class DotReporter {
   String _renderShortResultLines() {
     return parser.tests.values
         .where((i) {
-          final hideSuccess = !showSuccess && i.state == State.Success;
-          final _hideSkipped = hideSkipped && i.state == State.Skipped;
-          if (_hideSkipped) {
-            return false;
-          }
-          if (hideSuccess) {
-            return false;
-          }
+      final hideSuccess = !showSuccess && i.state == State.Success;
+      final _hideSkipped = hideSkipped && i.state == State.Skipped;
+      if (_hideSkipped) {
+        return false;
+      }
+      if (hideSuccess) {
+        return false;
+      }
 
-          return true;
-        })
+      return true;
+    })
         .map(_testToString)
         .join('\n');
   }
@@ -127,25 +128,25 @@ class DotReporter {
 
     switch (model.state) {
       case State.Failure:
-        base += _red(model.name);
+        base += _red(model.info);
         break;
       case State.Skipped:
-        base += _yellow(model.name);
+        base += _yellow(model.info);
         break;
       case State.Success:
-        base += _green(model.name);
+        base += _green(model.info);
         break;
       default:
-        base += model.name;
+        base += model.info;
         break;
     }
 
     if (model.state == State.Failure && showMessage) {
       if (model.error != null) {
-        base += '\n' + model.error;
+        base += '\n' + model.error!;
       }
       if (model.message != null) {
-        base += '\n' + model.message;
+        base += '\n' + model.message!;
       }
     }
     if (showId) {

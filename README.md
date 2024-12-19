@@ -1,85 +1,39 @@
-# Dot reporter for Dart/Flutter tests
+<!-- 
+This README describes the package. If you publish this package to pub.dev,
+this README's contents appear on the landing page for your package.
 
-![](https://github.com/apastuhov/dart_dot_reporter/workflows/Dart%20CI/badge.svg?branch=master)
-[![pub package](https://img.shields.io/pub/v/dart_dot_reporter.svg)](https://pub.dev/packages/dart_dot_reporter)
+For information about how to write a good package README, see the guide for
+[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
 
-Provided to make short and readable test report for your Dart/Flutter projects.
+For general information about developing packages, see the Dart guide for
+[creating packages](https://dart.dev/guides/libraries/create-packages)
+and the Flutter guide for
+[developing packages and plugins](https://flutter.dev/to/develop-packages). 
+-->
 
-Inspired by [dot-reporter](https://webdriver.io/docs/dot-reporter.html).
+TODO: Put a short description of the package here that helps potential users
+know whether this package might be useful for them.
 
-Sample output:
+## Features
 
-![](example/after_with_color.png)
+TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-Best view for CI results review. :)
+## Getting started
 
-## Installation
-
-If you want to use Dot reporter on the command line, install it using pub global activate:
-
-```bash
-pub global activate dart_dot_reporter
-# Add $HOME/.pub-cache/bin to your PATH
-```
-
-or
-
-```bash
-flutter pub global activate dart_dot_reporter
-```
-
-To update it, use the same pub global activate command.
+TODO: List prerequisites and provide or point to information on how to
+start using the package.
 
 ## Usage
 
-At first you need to use machine readable reporter, here is example for Dart and Flutter.
+TODO: Include short and useful examples for package users. Add longer examples
+to `/example` folder. 
 
-### Dart
-
-```bash
-pub run test --reporter=json > machine.log || echo 'Tests failed'
-dart_dot_reporter machine.log
+```dart
+const like = 'sample';
 ```
 
-### Flutter
+## Additional information
 
-```bash
-flutter test --machine > machine.log || echo 'Tests failed'
-flutter pub global run dart_dot_reporter machine.log
-```
-
-### Arguments
-
-`dart_dot_reporter <machine.log> [flags]`
-
-**NOTE:** Path to log file is required as first argument.
-
-You can use one of next flags after path:
-
-| Flag           | Description                                    |
-| -------------- | ---------------------------------------------- |
-| -h             | To get help. More info can be found on GitHub. |
-| --hide-skip    | To hide output about skipped tests.            |
-| --show-success | To show output about successfull tests.        |
-| --show-id      | To show id of the test from Machine log.       |
-| --show-message | To show error message of the failed test.      |
-| --no-color     | To disable colors.                             |
-| --fail-skipped | Return exit code 1 if has skipped tests.       |
-
-## Known issues
-
-- If test starts with **'loading /'** it will be skipped in report.
-
-## TODO:
-
-- Count time of execution, and display most slow tests
-- Support tool run as a pipe like `pub run test --reporter=json | dart_dot_reporter`
-
-## Development
-
-Run the app using `dart bin/dart_dot_reporter.dart`.
-
----
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+TODO: Tell users more about the package: where to find more information, how to 
+contribute to the package, how to file issues, what response they can expect 
+from the package authors, and more.

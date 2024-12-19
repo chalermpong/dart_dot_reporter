@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'model.dart';
+import 'package:dart_dot_reporter/src/model.dart';
+
+
 
 class Parser {
   Map<int, TestModel> tests = {};
@@ -40,12 +42,13 @@ class Parser {
         return;
       }
 
-      final model = tests.putIfAbsent(id, () => TestModel());
-      model.id = id;
-      model.name = name;
-      if (line['test']['metadata']['skip']) {
-        model.state = State.Skipped;
-      }
+      tests.putIfAbsent(id, () => TestModel(
+        id: id,
+        name: name,
+        filename: line['test']['root_url'] ?? 'NO_URL',
+        state: line['test']['metadata']['skip'] ? State.Skipped : null,
+      ));
+
     }
   }
 
@@ -69,7 +72,7 @@ class Parser {
       String message = line['message'];
 
       final model = tests[id];
-      if (model != null && message != null) {
+      if (model != null) {
         model.message = '\t$message\n';
       }
     }
@@ -81,8 +84,7 @@ class Parser {
 
       final model = tests[id];
       if (model != null && model.state == null) {
-        model.state =
-            line['result'] == 'success' ? State.Success : State.Failure;
+        model.state = line['result'] == 'success' ? State.Success : State.Failure;
       }
     }
   }

@@ -1,29 +1,8 @@
-import 'dart:io';
+/// Support for doing something awesome.
+///
+/// More dartdocs go here.
+library;
 
-import 'dot_reporter.dart';
-import 'parser.dart';
+export 'src/dart_dot_reporter.dart';
 
-void run({
-  String path,
-  bool FAIL_SKIPPED,
-  bool SHOW_SUCCESS,
-  bool HIDE_SKIPPED,
-  bool SHOW_ID,
-  bool SHOW_MESSAGE,
-  bool NO_COLOR,
-}) async {
-  final parser = Parser();
-
-  await parser.parseFile(path);
-
-  DotReporter(
-    parser: parser,
-    showSuccess: SHOW_SUCCESS,
-    hideSkipped: HIDE_SKIPPED,
-    failSkipped: FAIL_SKIPPED,
-    showId: SHOW_ID,
-    showMessage: SHOW_MESSAGE,
-    noColor: NO_COLOR,
-    out: stdout,
-  ).printReport();
-}
+// TODO: Export any libraries intended for clients of this package.
